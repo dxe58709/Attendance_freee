@@ -5,7 +5,7 @@ const getSession = nextSession({ autoCommit: false });
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   var session = await getSession(req, res);
-  if (Object.keys(session.data).includes("userId")) {
+  if (session.data && Object.keys(session.data).includes("userId")) {
     return {
       redirect: {
         destination: "/attendance",
