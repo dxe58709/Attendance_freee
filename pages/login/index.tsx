@@ -1,11 +1,11 @@
-import nextSession from "next-session";
 import type { GetServerSideProps } from "next";
+import nextSession from "next-session";
 
 const getSession = nextSession({ autoCommit: false });
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  var session = await getSession(req, res);
-  if (session.data && Object.keys(session.data).includes("userId")) {
+  const session = await getSession(req, res);
+  if (session.data && Object.keys(session.data).includes("id")) {
     return {
       redirect: {
         destination: "/attendance",
