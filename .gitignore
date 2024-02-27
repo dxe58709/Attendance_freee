@@ -2,3 +2,4 @@
 /.next
 .env
 /app/generated/prismaClient
+.vscode
