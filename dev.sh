@@ -19,6 +19,6 @@ docker run -it -d \
     -v="./docker-entrypoint-initdb.d/":/docker-entrypoint-initdb.d \
     mariadb:latest
 
-sleep 5
 # TRY LOGIN TO DATABASE
-mysql -u freee -p -h $(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $NAME)
+# sleep 5
+# mysql -u freee -p -h $(docker inspect --format '{{ .NetworkSettings.IPAddress }}' $NAME)
