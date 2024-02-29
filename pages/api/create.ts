@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "@/pages/libs/next-session";
+import { getServerSession } from "next-auth/next";
 import prisma from "@/pages/libs/prisma";
 
 export default async function handler(
@@ -7,19 +7,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method == "POST") {
-    const session = await getSession(req, res);
+    const session = await getServerSession({ req, res });
     if (req.body.username && req.body.password) {
       await prisma.$connect();
-      let find = await prisma.users.findMany({
-        where: {
-          username: String(req.body.username),
-          password: String(req.body.password),
+      let find = await prisma.users.create({
+        data: {
+          username: req.body.username,
+          password: req.body.password,
         },
       });
-      if (find.length > 0) {
-        session.data = { id: find[0].id, username: find[0].username };
-        await session.commit();
-      }
       await prisma.$disconnect();
       res.redirect("/login");
       return;

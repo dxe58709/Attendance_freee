@@ -1,7 +1,5 @@
 import type { GetServerSideProps } from "next";
-import nextSession from "next-session";
-
-const getSession = nextSession({ autoCommit: false });
+import { getSession } from "@/pages/libs/next-session";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession(req, res);
@@ -23,14 +21,14 @@ export default function Login() {
     <div>
       <form action="/api/login" method="post">
         <input
-          className="block"
+          className="block text-black"
           type="text"
           name="username"
           id="username"
           placeholder="username"
         />
         <input
-          className="block"
+          className="block text-black"
           type="password"
           name="password"
           id="password"
