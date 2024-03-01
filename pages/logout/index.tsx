@@ -1,5 +1,5 @@
+import type { GetServerSideProps } from "next";
 import { getSession, getSessionData } from "@/pages/libs/next-session";
-import { GetServerSideProps } from "next";
 
 type Props = {
   id: number;
@@ -8,6 +8,7 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession(req, res);
+
   if (getSessionData(session, "id")) {
     let props: Props = {
       id: Number(session.data.id),
@@ -23,11 +24,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   };
 };
 
-export default function Page(props: Props) {
+export default function Login(props: Props) {
   return (
-    <>
-      <h1>Attendance</h1>
-      <h2>You Logged in as {props.username} !!</h2>
-    </>
+    <div>
+    <h2>You Logged in as {props.username} !!</h2>
+      <form action="/api/logout" method="post">
+        <button className="block" type="submit">
+          logout
+        </button>
+      </form>
+    </div>
   );
 }

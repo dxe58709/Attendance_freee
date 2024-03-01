@@ -1,9 +1,10 @@
 import type { GetServerSideProps } from "next";
-import { getSession } from "@/pages/libs/next-session";
+import { getSession, getSessionData } from "@/pages/libs/next-session";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession(req, res);
-  if (session.data && Object.keys(session.data).includes("id")) {
+
+  if (getSessionData(session, "id")) {
     return {
       redirect: {
         destination: "/attendance",
@@ -12,7 +13,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     };
   }
   return {
-    props: {},
+    props: {
+      username: !!getSessionData(session, "id") ? "" : "Loggedin",
+    },
   };
 };
 

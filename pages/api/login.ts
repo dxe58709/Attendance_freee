@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "@/pages/libs/next-session";
 import prisma from "@/pages/libs/prisma";
+import { getSession } from "@/pages/libs/next-session";
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,11 +17,20 @@ export default async function handler(
         },
       });
       if (find.length > 0) {
-        session.data = { id: find[0].id, username: find[0].username };
-        await session.commit();
+        if (!session.data) session.data = {};
+        console.log(session.data);
+        session.data = Object.assign(session.data, {
+          id: find[0].id,
+          username: find[0].username,
+        });
       }
+      await session.save();
       await prisma.$disconnect();
-      res.redirect("/login");
+      res.send(`
+      <script>
+        window.location.href="/login"
+      </script>
+      `);
       return;
     }
   }
