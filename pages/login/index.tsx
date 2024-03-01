@@ -12,14 +12,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       },
     };
   }
-  return {
-    props: {
-      username: !!getSessionData(session, "id") ? "" : "Loggedin",
-    },
-  };
+  return { props: {} };
 };
 
-export default function Login() {
+export default function Page() {
   return (
     <div>
       <form action="/api/login" method="post">

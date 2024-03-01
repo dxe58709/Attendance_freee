@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/pages/libs/prisma";
 import { getSession } from "@/pages/libs/next-session";
 
 export default async function handler(

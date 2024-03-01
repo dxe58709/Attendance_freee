@@ -18,7 +18,6 @@ export default async function handler(
       });
       if (find.length > 0) {
         if (!session.data) session.data = {};
-        console.log(session.data);
         session.data = Object.assign(session.data, {
           id: find[0].id,
           username: find[0].username,
@@ -26,11 +25,7 @@ export default async function handler(
       }
       await session.save();
       await prisma.$disconnect();
-      res.send(`
-      <script>
-        window.location.href="/login"
-      </script>
-      `);
+      res.redirect("/login")
       return;
     }
   }
