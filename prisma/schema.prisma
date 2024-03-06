@@ -19,3 +19,11 @@ model Users {
   username  String
   password  String
 }
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  username  String
+  date      String
+  type      String
+  time      String
+}

@@ -3,7 +3,6 @@ import { getSession, getSessionData } from "@/pages/libs/next-session";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession(req, res);
-
   if (getSessionData(session, "id")) {
     return {
       redirect: {
@@ -17,26 +16,31 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
 export default function Page() {
   return (
-    <div>
+    <div className="flex justify-center items-center h-[100vh] bg-sky-100">
+      <div className="text-center">
+        <h2>勤怠サービスにログイン</h2>
       <form action="/api/login" method="post">
         <input
-          className="block text-black"
+          className="block w-[180px] text-black rounded"
           type="text"
           name="username"
           id="username"
           placeholder="username"
         />
         <input
-          className="block text-black"
+          className="block w-[180px] text-black rounded"
           type="password"
           name="password"
           id="password"
           placeholder="password"
         />
-        <button className="block" type="submit">
-          login
-        </button>
+        <div className="text-center">
+          <button className="inline-block w-[180px] h-[50px] rounded shadow-md bg-blue-700" type="submit">
+            <p className="text-white">ログイン</p>
+          </button>
+        </div>
       </form>
+      </div>
     </div>
   );
 }
