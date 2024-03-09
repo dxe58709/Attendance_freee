@@ -13,8 +13,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       id: Number(session.data.id),
       username: String(session.data.username),
     };
-    session.data = {};
-    await session.save();
     return { props: props };
   }
   return {
@@ -32,11 +30,18 @@ export default function Page(props: Props) {
       <div className="flex justify-center items-center h-[100vh]">
         <div className="text-center">
           <h2>ログアウトしますか？</h2>
+          <div className="flex justify-center items-center gap-[20px]">
           <form action="/api/logout" method="post">
             <button className="inline-block w-[180px] h-[50px] rounded shadow-md bg-blue-700" type="submit">
               <p className="text-white">ログアウト</p>
             </button>
           </form>
+          <form action="/attendance" method="post">
+            <button className="inline-block w-[180px] h-[50px] rounded shadow-md bg-blue-700" type="submit">
+              <p className="text-white">戻る</p>
+            </button>
+          </form>
+          </div>
         </div>
       </div>
     </div>
