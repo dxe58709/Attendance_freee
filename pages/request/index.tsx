@@ -29,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
           time: 'desc'
         }
       });
-      console.log(find)
       let _arrive = find.find((v) => v.type == "arrive");
       let _leave = find.find((v) => v.type == "leave");
       let _break = find.find((v) => v.type == "break");
