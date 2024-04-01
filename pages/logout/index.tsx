@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
 export default function Page(props: Props) {
   return (
-    <div className="bg-sky-100">
+    <div className="bg-sky-100 text-black">
       <h2>You Logged in as {props.username} !!</h2>
       <div className="flex justify-center items-center h-[100vh]">
         <div className="text-center">

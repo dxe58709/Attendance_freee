@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 export default function Page() {
   return (
     <div className="flex justify-center items-center h-[100vh] bg-sky-100">
-      <div className="text-center">
+      <div className="text-center text-black">
         <h2>勤怠サービスにログイン</h2>
       <form action="/api/login" method="post">
         <input

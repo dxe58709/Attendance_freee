@@ -67,7 +67,7 @@ export default function Page(props: Props) {
 
   return props.status ? (
     <>
-      <div className="fixed">
+      <div className="fixed text-black">
         <h1>勤怠サービス</h1>
         <h2>You Logged in as {props.username} !!</h2>
       </div>

@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
           time: 'desc'
         }
       });
+      console.log(find)
       let _arrive = find.find((v) => v.type == "arrive");
       let _leave = find.find((v) => v.type == "leave");
       let _break = find.find((v) => v.type == "break");
@@ -56,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
 export default function Page(props: Props) {
   return (
-    <div className="bg-sky-100 min-h-[100vh]">
+    <div className="bg-sky-100 min-h-[100vh] text-black">
       <h2>You Logged in as {props.username} !!</h2>
       <div>
         <div className="items-center justify-center mb-[30px]">
